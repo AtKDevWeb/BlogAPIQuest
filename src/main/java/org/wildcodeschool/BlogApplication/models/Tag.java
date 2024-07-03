@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 
 @Entity
 public class Tag {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
 
-    public Tag() {
-
-    }
+    public Tag() {}
 
     public Tag(long id, String name) {
         this.id = id;
@@ -20,15 +21,19 @@ public class Tag {
         return id;
     }
 
-    public void setIdTag(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNameTag() {
+    public String getName() {
         return name;
     }
 
-    public void setNameTag(String name) {
+    public void setName(String name) {
         this.name = name;
     }
+
+
+
+
 }

@@ -47,7 +47,7 @@ public class TagController {
         if (tag == null) {
             return ResponseEntity.notFound().build();
         } else {
-            tag.setNameTag(updateTag.getNameTag());
+            tag.setName(updateTag.getName());
             return ResponseEntity.ok(updateTag);
         }
     }
