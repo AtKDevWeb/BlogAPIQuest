@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.wildcodeschool.BlogApplication.models.Category;
-import org.wildcodeschool.BlogApplication.models.repository.CategoryReposirtory;
+import org.wildcodeschool.BlogApplication.models.repository.CategoryRepository;
 
 import java.util.List;
 
@@ -13,28 +13,28 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController {
     @Autowired
-    private Category categoryReposirtory;
+    private CategoryRepository categoryRepository;
     //Methode CRUD
 
     //Create
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        Category savedCategory = categoryReposirtory.save(category);
+        Category savedCategory = categoryRepository.save(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
     }
     //Read All
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {
-        List<Category> categorys = categoryReposirtory.findAll();
-        if (categorys.isEmpty()) {
+        List<Category> categories = categoryRepository.findAll();
+        if (categories.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(categorys);
+        return ResponseEntity.ok(categories);
     }
     //Read One
     @GetMapping ("{/id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable int id) {
-        Category category = getAllCategories.findById(id).orElse(null);
+    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
+        Category category = categoryRepository.findById(id).orElse(null);
         if (category == null) {
             return ResponseEntity.notFound().build();
         }
@@ -43,7 +43,7 @@ public class CategoryController {
     //Update One
     @PutMapping ("{/id}")
     public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category categoryDetails) {
-        Category category = categoryReposirtory.findById(id).orElse(null);
+        Category category = categoryRepository.findById(id).orElse(null);
         if (category == null) {
             return ResponseEntity.notFound().build();
         }
@@ -51,6 +51,14 @@ public class CategoryController {
     }
     //Delete
     @DeleteMapping ("{/id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
+        Category category = categoryRepository.findById(id).orElse(null);
+        if (category == null) {
+            return ResponseEntity.notFound().build();
+        }
+        categoryRepository.delete(category);
+        return ResponseEntity.noContent().build();
+    }
 }
 
 

@@ -15,6 +15,21 @@ public class Article {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private int category_id;
+
+    //Constructeur
+
+    public Article() {
+    }
+
+    public Article(int category_id, String content, LocalDateTime createdAt, Long id, String title, LocalDateTime updatedAt) {
+        this.category_id = category_id;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.id = id;
+        this.title = title;
+        this.updatedAt = updatedAt;
+    }
+
     // Getters et setters
 
     public Long getId() {

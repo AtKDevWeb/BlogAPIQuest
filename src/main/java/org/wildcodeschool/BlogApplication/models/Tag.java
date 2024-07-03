@@ -7,6 +7,15 @@ public class Tag {
     private long idTag;
     private String nameTag;
 
+    public Tag() {
+
+    }
+
+    public Tag(long idTag, String nameTag) {
+        this.idTag = idTag;
+        this.nameTag = nameTag;
+    }
+
     public long getIdTag() {
         return idTag;
     }
