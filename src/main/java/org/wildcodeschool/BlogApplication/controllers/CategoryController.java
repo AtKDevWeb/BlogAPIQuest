@@ -42,13 +42,16 @@ public class CategoryController {
     }
     //Update One
     @PutMapping ("{/id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category categoryDetails) {
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category updateCategory) {
         Category category = categoryRepository.findById(id).orElse(null);
         if (category == null) {
             return ResponseEntity.notFound().build();
+        } else {
+            category.setName(updateCategory.getName());
+            return ResponseEntity.ok(updateCategory);
         }
-        category.setName(category.getName());
     }
+
     //Delete
     @DeleteMapping ("{/id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {

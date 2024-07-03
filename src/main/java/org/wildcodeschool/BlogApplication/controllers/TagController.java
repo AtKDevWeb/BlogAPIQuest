@@ -42,12 +42,14 @@ public class TagController {
     }
     //Update One
     @PutMapping("{/id}")
-    public ResponseEntity<Tag> updateTag(@PathVariable long id, @RequestBody Tag tag) {
+    public ResponseEntity<Tag> updateTag(@PathVariable long id, @RequestBody Tag updateTag) {
         Tag tag = tagRepository.findById(id).orElse(null);
         if (tag == null) {
             return ResponseEntity.notFound().build();
+        } else {
+            tag.setNameTag(updateTag.getNameTag());
+            return ResponseEntity.ok(updateTag);
         }
-        tag.setNameTag(tag.getNameTag());
     }
     //Delete
     @DeleteMapping("{/id}")

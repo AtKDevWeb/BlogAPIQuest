@@ -4,31 +4,31 @@ import jakarta.persistence.*;
 
 @Entity
 public class Tag {
-    private long idTag;
-    private String nameTag;
+    private long id;
+    private String name;
 
     public Tag() {
 
     }
 
-    public Tag(long idTag, String nameTag) {
-        this.idTag = idTag;
-        this.nameTag = nameTag;
+    public Tag(long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public long getIdTag() {
-        return idTag;
+    public long getId() {
+        return id;
     }
 
-    public void setIdTag(long idTag) {
-        this.idTag = idTag;
+    public void setIdTag(long id) {
+        this.id = id;
     }
 
     public String getNameTag() {
-        return nameTag;
+        return name;
     }
 
-    public void setNameTag(String nameTag) {
-        this.nameTag = nameTag;
+    public void setNameTag(String name) {
+        this.name = name;
     }
 }
